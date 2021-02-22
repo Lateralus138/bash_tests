@@ -12,7 +12,7 @@ bash_func_src
 hash(){
 	[ -r "$1" ] || return
 	local hash
-	for i in "$(od $1)"; do
+	for i in $(od $1); do
 		hash+="$i"
 	done
 	echo "$hash"
@@ -511,7 +511,7 @@ function parseenv(){
 		nextLine
 	declare -A env_array
 	IFS="$(echo -en "\n\b")"
-	for line in "$(env)"; do
+	for line in $(env); do
 		lines+=(${line})
 	done
 	for lIdx in "${!lines[@]}"; do
@@ -1760,13 +1760,10 @@ function list_1f000(){
 function fcl(){ cat "$1" | wc -c; }
 function fortcproj(){
 	[[ $# -eq 0 ]] && return
-	for i in "$1"
-	do
-		mkdir ${HOME}/fortran/projects/crossplatform/$1 &&
-		workspace ${HOME}/fortran/projects/crossplatform/${1}/${1} &&
-		nulfile ${HOME}/fortran/projects/crossplatform/${1}/${1}.f95 &&
-		cd ${HOME}/fortran/projects/crossplatform/$1
-	done
+    mkdir ${HOME}/fortran/projects/crossplatform/$1 &&
+    workspace ${HOME}/fortran/projects/crossplatform/${1}/${1} &&
+    nulfile ${HOME}/fortran/projects/crossplatform/${1}/${1}.f95 &&
+    cd ${HOME}/fortran/projects/crossplatform/$1
 }
 #function lastmodified(){
 #	[[ $# -eq 0 ]] && return 1
