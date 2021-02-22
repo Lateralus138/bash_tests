@@ -36,7 +36,7 @@ hashcheck(){
 		echo Not "enough parameters passed."
 		return
 	fi
-	if [ ! -f "$1" -o ! -f "$2" ]; then
+	if [[ ! -f "$1" ]] && [[ ! -f "$2" ]]; then
 		echo "1 or more of $1 and $2 are not valid files."
 		return
 	fi
