@@ -154,7 +154,7 @@ mountiso(){
 	esac
 	sudo mount -o loop "$@" "$mi"
 }
-nulfile(){ [ $# -ne 0 ] && dd if=/dev/null of="$@"; }
+nulfile(){ [ $# -ne 0 ] && dd if=/dev/null of="$*"; }
 filesize(){ [ -f "$@" ] && ls -al "$@" | awk '{print $5}'; }
 rmnul(){ # Remove nul files in passed or current directory. Pass "-a" in any order for sudo
 	local fPATH file root param oifs
@@ -2432,11 +2432,11 @@ function lsq {
         directory="$_input"
     fi
     if [[ $# -gt 0 ]]; then
-        if [[ ! -d "$@" ]] &&
-            [[ ! -f "$@" ]]; then
+        if [[ ! -d "$*" ]] &&
+            [[ ! -f "$*" ]]; then
             return 2
         fi
-        directory="$@"
+        directory="$*"
     fi
     if [[ -z "$directory" ]]; then
         directory="."
