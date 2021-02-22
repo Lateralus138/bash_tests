@@ -382,8 +382,7 @@ function lsp(){
 		append="${params}*" || append="${params}/*"
 		printf "%s\n" ${append}
 	else
-		printf "%s\n" -- *
-        printf "%s\n" .*
+		printf "%s\n" "$HOME"/* "$HOME"/.*
 	fi
 }
 function search() {
