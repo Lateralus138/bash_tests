@@ -595,7 +595,7 @@ function files_by_size(){
 				-h|--help) help=true;;
 				-r|--reverse) sortOpt+="r";;
 				-[gG]|-[mM]|-[kK])	BS="${prm//-/}"
-							BS=$(echo "${BS}" | tr '[a-z]' '[A-Z]');;
+							BS=$(echo "${BS}" | tr '[:lower:]' '[:upper:]');;
 				-[qQ]) quiet=true;;
 				-[0-9]*) depth="${prm//-/}";;
 				-[sS]) sudov=true;;
