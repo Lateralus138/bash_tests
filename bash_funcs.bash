@@ -853,12 +853,12 @@ function testtimed(){
 	local max param verb
 	for param in "$@"; do
 		case "${param}" in
-			[0-9]*) max=`expr ${param} - 1` && shift;;
+			[0-9]*) max=$(expr ${param} - 1) && shift;;
 			-v) verb=true && shift;;
 		esac
 	done
 	test "${max}" -eq "${max}" > /dev/null 2>&1 ||
-	max=`expr 100 - 1`
+	max=$(expr 100 - 1)
 	for ((i=0;i<=${max};i++)); do
 		timed_array[$i]="$(timed)"
 		if [[ -n "${verb}" ]]; then
@@ -1285,7 +1285,7 @@ function watchtime(){
         while :; do
                 line=" 🕢 $(date "+%r") 🕢 "
                 len=${#line}
-                for iter in `seq 1 $len`; do back+="\b"; done
+                for iter in $(seq 1 $len); do back+="\b"; done
                 echo -en "${line}"
                 sleep $sleep
                 echo -en "${back}"
@@ -1317,9 +1317,9 @@ function watch_alt(){
                         [[ "${arg}" =~ ^-[cC]$ ]] &&
                         chng=1 && shift
                 done
-                lastCom=`eval $*`
+                lastCom=$(eval $*)
                 while :;do
-                        com=`eval $*`
+                        com=$(eval $*)
                         eval $*
                         [[ -n "${chng}" ]] &&
                         [[ "${com}" != "${lastCom}" ]] &&
@@ -1333,7 +1333,7 @@ function watch_alt(){
 }
 function debug(){
         local lastErr=$? lastPid=$!
-        local lastProc=`nameByPid ${lastPid}`
+        local lastProc=$(nameByPid ${lastPid})
         echo -e "$([[ "${lastErr}" -gt 0 ]] && \
                         echo -e " Last error: \033[31m${lastErr}\033[0m")\
                 $([[ "${lastErr}" -gt 0 ]] && \
@@ -1345,7 +1345,7 @@ function debug(){
 }
 nameByPid(){
         if [[ ($# -gt 0 && $1 =~ ^[0-9]*$) ]];then
-                local initArray=($(all_spaces -r:' ' "`ps aux`" | cut -d' ' -f2,11))
+                local initArray=($(all_spaces -r:' ' "$(ps aux)" | cut -d' ' -f2,11))
                 local iter pidArray procArray
                 for ((  iter=1;\
                         iter<=$(echo "scale=0;\
@@ -1658,7 +1658,7 @@ function printu(){
 function range(){
 	is_int $1 || return
 	is_int $2 || return
-	range=($(for i in `seq $1 $2`; do printf "$i "; done))
+	range=($(for i in $(seq $1 $2); do printf "$i "; done))
 	echo "${range[@]}"
 }
 function list_uni(){
@@ -1678,23 +1678,23 @@ function list_uni(){
 	done
 }
 function list_1e000(){
-	r1=(`seq 125184 125259`)
-	r2=(`seq 125264 125273`)
-	r3=(`seq 125278 125279`)
-	r4=(`seq 126464 126467`)
-	r5=(`seq 126469 126495`)
-	r6=(`seq 126497 126498`)
+	r1=($(seq 125184 125259))
+	r2=($(seq 125264 125273))
+	r3=($(seq 125278 125279))
+	r4=($(seq 126464 126467))
+	r5=($(seq 126469 126495))
+	r6=($(seq 126497 126498))
 	r7=(126500)
 	r8=(126503)
-	r9=(`seq 126505 126514`)
-	r10=(`seq 126516 126519`)
+	r9=($(seq 126505 126514))
+	r10=($(seq 126516 126519))
 	r11=(126521)
 	r12=(126523)
-	r13=(`seq 126561 126562`)
+	r13=($(seq 126561 126562))
 	r14=(126564)
-	r15=(`seq 126567 126570`)
-	r16=(`seq 126572 126578`)
-	r17=(`seq 126580 126583`)
+	r15=($(seq 126567 126570))
+	r16=($(seq 126572 126578))
+	r17=($(seq 126580 126583))
 	r18=(126590)
 	for int in {${r1[@]},${r2[@]},${r3[@]},${r4[@]},${r5[@]},${r6[@]},${r7[@]},${r8[@]},${r9[@]},${r10[@]},${r11[@]},${r12[@]},${r13[@]},${r14[@]},${r15[@]},${r16[@]},${r17[@]},${r18[@]}}; do
 		hex=$(dec_to_hex $int)
@@ -1704,47 +1704,47 @@ function list_1e000(){
 	printf "\n"
 }
 function list_1f000(){
-	r1=(`seq 126976 127019`)
-	r2=(`seq 127024 127123`)
-	r3=(`seq 127136 127150`)
-	r4=(`seq 127153 127167`)
-	r5=(`seq 127169 127183`)
-	r6=(`seq 127185 127221`)
-	r7=(`seq 127232 127244`)
-	r8=(`seq 127248 127340`)
-	r9=(`seq 127344 127404`)
-	r10=(`seq 127462 127490`)
-	r11=(`seq 127504 127547`)
-	r12=(`seq 127552 127560`)
-	r13=(`seq 127568 127569`)
-	r14=(`seq 127744 128722`)
-	r15=(`seq 128736 128748`)
-	r16=(`seq 128752 128762`)
-	r17=(`seq 128768 128883`)
-	r18=(`seq 128896 128901`)
+	r1=($(seq 126976 127019))
+	r2=($(seq 127024 127123))
+	r3=($(seq 127136 127150))
+	r4=($(seq 127153 127167))
+	r5=($(seq 127169 127183))
+	r6=($(seq 127185 127221))
+	r7=($(seq 127232 127244))
+	r8=($(seq 127248 127340))
+	r9=($(seq 127344 127404))
+	r10=($(seq 127462 127490))
+	r11=($(seq 127504 127547))
+	r12=($(seq 127552 127560))
+	r13=($(seq 127568 127569))
+	r14=($(seq 127744 128722))
+	r15=($(seq 128736 128748))
+	r16=($(seq 128752 128762))
+	r17=($(seq 128768 128883))
+	r18=($(seq 128896 128901))
 	r19=(128903)
 	r20=(128905)
-	r21=(`seq 128908 128909`)
-	r22=(`seq 128913 128920`)
-	r23=(`seq 128922 128926`)
-	r24=(`seq 128928 128960`)
-	r25=(`seq 128962 128964`)
-	r26=(`seq 128966 128970`)
-	r27=(`seq 128972 128974`)
+	r21=($(seq 128908 128909))
+	r22=($(seq 128913 128920))
+	r23=($(seq 128922 128926))
+	r24=($(seq 128928 128960))
+	r25=($(seq 128962 128964))
+	r26=($(seq 128966 128970))
+	r27=($(seq 128972 128974))
 	r28=(128976)
 	r29=(128978)
 	r30=(128980)
-	r31=(`seq 128992 128827`)
-	r32=(`seq 129024 129035`)
-	r33=(`seq 129040 129095`)
-	r34=(`seq 129104 129113`)
-	r35=(`seq 129120 129159`)
-	r36=(`seq 129168 129197`)
-	r37=(`seq 129293 129535`)
-	r38=(`seq 129648 129651`)
-	r39=(`seq 129656 129658`)
-	r40=(`seq 129664 129666`)
-	r41=(`seq 129680 129685`)
+	r31=($(seq 128992 128827))
+	r32=($(seq 129024 129035))
+	r33=($(seq 129040 129095))
+	r34=($(seq 129104 129113))
+	r35=($(seq 129120 129159))
+	r36=($(seq 129168 129197))
+	r37=($(seq 129293 129535))
+	r38=($(seq 129648 129651))
+	r39=($(seq 129656 129658))
+	r40=($(seq 129664 129666))
+	r41=($(seq 129680 129685))
 	#count=0
 	for int in {${r1[@]},${r2[@]},${r3[@]},${r4[@]},${r5[@]},${r6[@]},${r7[@]},${r8[@]},${r9[@]},${r10[@]},${r11[@]},${r12[@]},${r13[@]},${r14[@]},${r15[@]},${r16[@]},${r17[@]},${r18[@]},${r19[@]},${r20[@]},${r21[@]},${r22[@]},${r23[@]},${r24[@]},${r25[@]},${r26[@]},${r27[@]},${r28[@]},${r29[@]},${r30[@]},${r31[@]},${r32[@]},${r33[@]},${r34[@]},${r35[@]},${r36[@]},${r37[@]},${r38[@]},${r39[@]},${r40[@]},${r41[@]}}; do
 		#count=$(($count + 1))
@@ -2305,10 +2305,10 @@ function str_range {
 }
 function usap {
     printf  \
-`setcolors 1 5 91 40`'             \n     U'\
-`setcolors 97`'S'\
-`setcolors 94`'A     \n             \n'\
-`setcolors`
+$(setcolors 1 5 91 40)'             \n     U'\
+$(setcolors 97)'S'\
+$(setcolors 94)'A     \n             \n'\
+$(setcolors)
 }
 function trash {
     if [[ ! -t 0 ]]; then
@@ -3050,7 +3050,7 @@ function float_range {
                 return 2
             fi
         done
-        for num_a in `seq $1 $2`; do
+        for num_a in $(seq $1 $2); do
             for num_b in {0..99}; do
                 range+=( "${num_a}.$(printf '%02d' "$num_b")" )
                 if [[ $num_a -eq $2 ]]; then break; fi
