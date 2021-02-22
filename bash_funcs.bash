@@ -53,7 +53,7 @@ hashcheck(){
 		7z a -m0=lzma -mx=9 -mfb=64 -md=32m -ms=off "${1}.7z" "$2"
 	fi
 }
-pause(){ [ $# -ne 0 ] && local msg="$@" || local msg="Press [Enter] to continue..."; read -p "$msg"; }
+pause(){ [ $# -ne 0 ] && local msg="$*" || local msg="Press [Enter] to continue..."; read -p "$msg"; }
 trash(){
 	local trash=($@)
 	for files in "${trash[@]}"; do
@@ -719,13 +719,12 @@ EOF
 #	fi
 #}
 function ls_file_array(){
-	local dir oldIFS="${IFS}"
+	local dir IFS=$(echo -en "\n\b")
 	[[ -d "$*" ]] &&
 	dir="$(realpath $*)" ||
 	dir="$(realpath .)"
-	IFS=$(echo -en "\n\b")
-	file_array=($(ls --color=never -1Ap "${dir}" | grep -v "/"))
-	IFS="${oldIFS}"
+	file_array=($(find "$dir" -maxdepth -type f))
+    printf '%s\n' ${file_array[@]}
 }
 #
 function is_int_or_float(){ [[ "$1" =~ ^[-|+]?[0-9]*?\.?[0-9]*?$ ]] && return 0 || return 1; }
