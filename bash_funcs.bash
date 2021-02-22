@@ -76,10 +76,10 @@ truet(){
 }
 findstr(){
 	[ "$3" = "-a" ] && opt="sudo"
-	[ -d "$1" -a -n "${2+x}" ] && $opt grep -rnw "$1" -e "$2"
+	[[ -d "$1" ]] && [[ -n "${2+x}" ]] && $opt grep -rnw "$1" -e "$2"
 }
 targs(){
-	for i in ${@}; do [ "$i" = "-a" ] && opt="sudo"; done
+	for i in ${@}; do [[ "$i" = "-a" ]] && opt="sudo"; done
 	echo $opt
 }
 duck(){
@@ -122,7 +122,7 @@ record(){
 	arecord -f dat "$time" "$file"
 }
 WRITE_SECURE_SETTINGS(){
-	[ $# -ne 0 -a -f "$HOME/bin/platform-tools/adb" ] &&
+	[[ $# -ne 0 ]] && [[ -f "$HOME/bin/platform-tools/adb" ]] &&
 	adb shell pm grant "$1" android.permission.WRITE_SECURE_SETTINGS
 }
 setifs(){ oldIFS=$IFS && IFS=$(echo -en "\n\b"); }
@@ -187,7 +187,7 @@ vimthemes(){ 	# list or preview vim themes; Usage: vimthemes [-p|--preview] [-u|
 	done
 	oifs=$IFS;IFS=$(echo -en "\n\b")
 	[ -n "${modei+x}" ] || modei="echo"
-	if [ ! -d "/home/$(id -un)/.vim/colors" -a "${userv+x}" ]; then
+	if [[ ! -d "/home/$(id -un)/.vim/colors" ]] && [[ "${userv+x}" ]]; then
 		echo "Users Vim directory doesn't exist..."
 		return
 	fi
@@ -233,7 +233,7 @@ genqueries(){
 	[ "${stime+x}" ] || stime=10
 	for line in $(readfile $qfile); do
 		c=$((c+1))
-		[ $((c % 10)) -eq 0 -a "$(ps aux | grep firefox | grep -v grep)" ] &&
+		[[ $((c % 10)) -eq 0 ]] && [[ "$(ps aux | grep firefox | grep -v grep)" ]] &&
 		killall firefox && sleep 15
 		echo -e "Binging query #${c}: $line"
 		bing "$line"
