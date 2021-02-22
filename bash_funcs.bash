@@ -4,7 +4,7 @@ if [[ -f "${HOME}/bin/git-create.bash" ]]; then
 fi
 function bash_func_src {
     local file
-    for file in "${HOME}/.bash/profile/functions/"*".bash"; do
+    for file in $(find "${HOME}/.bash/profile/functions/" -maxdepth 1 -type f -name "*.bash"); do
         . "$file"
     done
 }
