@@ -53,7 +53,7 @@ hashcheck(){
 		7z a -m0=lzma -mx=9 -mfb=64 -md=32m -ms=off "${1}.7z" "$2"
 	fi
 }
-pause(){ [ $# -ne 0 ] && local msg="$*" || local msg="Press [Enter] to continue..."; read -p "$msg"; }
+pause(){ [ $# -ne 0 ] && local msg="$*" || local msg="Press [Enter] to continue..."; read -r -p "$msg"; }
 trash(){
 	local trash=($@)
 	for files in "${trash[@]}"; do
