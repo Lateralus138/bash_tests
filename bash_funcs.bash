@@ -2126,8 +2126,7 @@ function _gtk_theme(){
 }
 function _get_pid_env(){
     if [[ $(id -u) -ne 0 ]]; then
-        local source="${BASH_SOURCE[0]}" func="${FUNCNAME[0]}"
-        sudo "$(which bash)" -c ". $source ; $func $@"
+        sudo "$(which bash)" -c ". $BASH_SOURCE ; $FUNCNAME $@"
         return $?
     fi
     local pid input
