@@ -747,7 +747,7 @@ alias ims='is_math_symbol'
 #	return 0
 #}
 #complete -W "-h --help -s 0 1 2 3 4 5 6 7 8 9 + - * / ( )" bcmath
-bc_opts=( -h --help -s 0 1 2 3 4 5 6 7 8 9 \+ \- \* \/ \( \) )
+bc_opts=( -h --help -s 0 1 2 3 4 5 6 7 8 9 \+ - \* / \( \) )
 complete -W "$(printf '%s\n' "${bc_opts[@]}")" bcmath
 
 # ⟬⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟭
