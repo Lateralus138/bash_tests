@@ -61,9 +61,10 @@ trash(){
 	done
 }
 desktop(){
-	if [ -n "$1" -a ! -f "/usr/share/applications/$1.desktop" ]; then
-		echo -e "[Desktop Entry]\nName=\nGenericName=\nComment=\nExec=\nTerminal=false\nType=Application\nIcon=\nCategories=GNOME;GTK;Utility;" >> /usr/share/applications/$1.desktop
-	vim /usr/share/applications/$1.desktop
+    local file="$HOME/.local/share/applications/$1.desktop"
+	if [[ -n "$1" ]] && [[ ! -f "$file" ]]; then
+		echo -e "[Desktop Entry]\nName=\nGenericName=\nComment=\nExec=\nTerminal=false\nType=Application\nIcon=\nCategories=GNOME;GTK;Utility;" >> "$file"
+	vim "$file"
 	fi
 }
 psaux(){
