@@ -383,7 +383,7 @@ function lsp(){
 		printf "%s\n" ${append}
 	else
 		printf "%s\n" -- *
-        printf "%s\n" -- .*
+        printf "%s\n" .*
 	fi
 }
 function search() {
