@@ -1337,10 +1337,10 @@ function debug(){
         echo -e "$([[ "${lastErr}" -gt 0 ]] && \
                         echo -e " Last error: \033[31m${lastErr}\033[0m")\
                 $([[ "${lastErr}" -gt 0 ]] && \
-                        echo "\n" || \
+                        printf "\n" || \
                         echo -e "\r") Last PID: \033[33m${lastPid}\033[0m\
-                $([[ -n "${lastProc}" ]] && echo "\n Last Process: ${lastProc}")\
-                $([[ $# -gt 0 ]] && echo "\n Message: $*")"
+                $([[ -n "${lastProc}" ]] && printf "\n Last Process: ${lastProc}")\
+                $([[ $# -gt 0 ]] && printf "\n Message: $*")"
         return
 }
 nameByPid(){
