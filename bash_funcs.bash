@@ -139,7 +139,7 @@ bing(){
 mountiso(){
 	local input mi="/media/iso"
 	[ -d "$mi" ] || sudo mkdir -p $mi || return
-	if [ ! -f "$*" -o -d "$*" ]; then
+	if [[ ! -f "$*" ]] || [[ ! -d "$*" ]]; then
 		echo " [ Nothing mountable passed ] "
 		return
 	fi
