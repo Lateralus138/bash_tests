@@ -2328,7 +2328,7 @@ function exe {
             [[ -f "${input}" ]] && chmod +x "${input}"
         done
     else
-        [[ -f "$@" ]] && chmod +x "$@"
+        [[ -f "$*" ]] && chmod +x "$@"
     fi
 }
 function sexe {
@@ -2338,7 +2338,7 @@ function sexe {
             [[ -f "${input}" ]] && sudo chmod +x "${input}"
         done
     else
-        [[ -f "$@" ]] && sudo chmod +x "$@"
+        [[ -f "$*" ]] && sudo chmod +x "$@"
     fi
 }
 #function join_pipe {
@@ -2404,7 +2404,7 @@ function lsfiles {
         rclr=($(shuf -i 31-36 -n 1) $(shuf -i 91-96 -n 1))
     rclr=${rclr[$(shuf -i 0-1 -n 1)]}
     if [[ $# -gt 0 ]]; then
-        if [[ -d "$@" ]]; then
+        if [[ -d "$*" ]]; then
             path="$(realpath $@)"
         else
             return 1
