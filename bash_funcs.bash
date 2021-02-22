@@ -28,7 +28,7 @@ hashfile(){
 		*.*) file=${file%%.*}_hashfile ;;
 		*  ) file=${file}_hashfile ;;
 	esac
-	echo $(hash "$1") > "${dir}${file}"
+	hash "$1" > "${dir}${file}"
 }
 hashcheck(){
 	var="$2"
@@ -314,7 +314,7 @@ randfile(){
 dailybing(){ genqueries $(. $HOME/.bash_funcs;randfile "$HOME" -g:".css\|rc" -v:".rcc" -h:$((1 + $RANDOM % 500)) -t:1 -s) 15; }
 suppresserr(){ [ ! "$@" ] && echo -n "" || echo "$@"; }
 even(){ ([ $# -ne 0 ] && [[ $(($1 % 2)) -eq 0 ]] && echo true || echo -n;) }
-R(){ echo -n "${RANDOM:0:$(echo ${RANDOM:0:1} % ${RANDOM:0:1})}"; }
+R(){ echo -n "${RANDOM:0:$((${RANDOM:0:1} % ${RANDOM:0:1}))}"; }
 since(){ loginctl session-status | grep Since | head -n 1 | awk '{print $6 " " $7}'; }
 psformat(){ ps aux | awk '{printf "\nUser: " $1}{printf "\nCommand: "}{for(a=11;a<=NF;a++)printf $a " "}{printf "\nPID: " $2}'; }
 psff(){ local f="$HOME/psformat.log" && psformat > $f && xdg-open $f; }
