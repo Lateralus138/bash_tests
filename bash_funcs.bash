@@ -94,7 +94,7 @@ duck(){
 }
 google() {
     search=""
-    echo "Googling: $@"
+    echo "Googling: $*"
     for term in $@; do
         search="$search%20$term"
     done
@@ -134,7 +134,7 @@ bing(){
 		search="$search$delim$term"
 	done
 	xdg-open "https://www.bing.com$pre$search"
-	echo "Binging: $@"
+	echo "Binging: $*"
 }
 mountiso(){
 	local input mi="/media/iso"
@@ -193,7 +193,7 @@ vimthemes(){ 	# list or preview vim themes; Usage: vimthemes [-p|--preview] [-u|
 	if [ "${userv+x}" ]; then
 		pathv="/home/$(id -un)/.vim/colors"
 	else
-		for fldrv in $(ls /usr/share/vim); do
+		for fldrv in $(find /usr/share/vim -maxdepth 1 -type f); do
 			if [[ $fldrv =~ vim.*[0-9] ]]; then
 				pathv="/usr/share/vim/$fldrv/colors"
 			fi
@@ -451,8 +451,7 @@ function listpkgs(){
 		array[$idx]="${array[$idx]//accountsservice}"
 		array[$idx]="${array[$idx]%\/*}"
 	done
-	printf '%s\n'"${array[@]}"
-    #printf '%s\n' ""
+	printf '%s\n' ${array[*]}
 }
 # Rainbow Bash Function
 # Rainbow colorize input
