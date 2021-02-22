@@ -162,7 +162,7 @@ rmnul(){ # Remove nul files in passed or current directory. Pass "-a" in any ord
 	for param in "$@"; do
 		case "$param" in
 			-a) root="sudo";;
-			$([ -d "$param" ] && echo $param)) fPATH="$param";;
+			"$([[ -d "$param" ]] && echo "$param")") fPATH="$param";;
 		esac
 	done
 	[ -n "${fPATH+x}" ] || fPATH="."
