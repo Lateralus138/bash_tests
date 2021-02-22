@@ -2560,7 +2560,7 @@ function eval_pipe {
 }
 function loadws {
     local array iter quiet=0
-    IFS=$(echo -en "\n\b") array=($(ls --color=auto *".code-workspace" 2>/dev/null))
+    IFS=$(echo -en "\n\b") array=($(ls --color=auto -- *".code-workspace" 2>/dev/null))
     if [[ ${#array[@]} -gt 0 ]]; then
         if [[ $# -gt 0 ]]; then
             if [[ "$1" =~ ^-([qQ]|-[qQ][uU][iI][eE][tT])$ ]]; then
