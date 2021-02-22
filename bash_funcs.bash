@@ -1369,9 +1369,8 @@ nameByPid(){
 }
 pid_exists(){
         [[ $# -gt 0 ]] &&
-        ([[ "$(echo $(all_spaces "$(ps aux)" | \
-                cut -f2))" == *" $1 "* ]] && \
-        return 0) || return 1
+        [[ "$(ps aux | cut -f2)" == *" $1 "* ]] ||
+        return 1
 }
 attach_to_pid(){
         while pid_exists $1;do sleep 0.9;done
