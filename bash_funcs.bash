@@ -139,7 +139,7 @@ bing(){
 mountiso(){
 	local input mi="/media/iso"
 	[ -d "$mi" ] || sudo mkdir -p $mi || return
-	if [ ! -f "$@" -o -d "$@" ]; then
+	if [ ! -f "$*" -o -d "$*" ]; then
 		echo " [ Nothing mountable passed ] "
 		return
 	fi
@@ -155,7 +155,7 @@ mountiso(){
 	sudo mount -o loop "$@" "$mi"
 }
 nulfile(){ [ $# -ne 0 ] && dd if=/dev/null of="$*"; }
-filesize(){ [ -f "$@" ] && ls -al "$@" | awk '{print $5}'; }
+filesize(){ [ -f "$*" ] && ls -al "$@" | awk '{print $5}'; }
 rmnul(){ # Remove nul files in passed or current directory. Pass "-a" in any order for sudo
 	local fPATH file root param oifs
 	oifs=$IFS;IFS=$(echo -en "\n\b")
@@ -215,7 +215,7 @@ vimthemes(){ 	# list or preview vim themes; Usage: vimthemes [-p|--preview] [-u|
 	IFS=$oifs
 }
 readfile(){
-	[ $# -eq 0 ] || [ ! -f "$@"  ] && return
+	[ $# -eq 0 ] || [ ! -f "$*"  ] && return
 	local fline oifs=$IFS
 	IFS=''
 	while read -r fline; do echo "$fline"; done < "$@"
