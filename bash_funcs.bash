@@ -801,7 +801,7 @@ EOF
 					fi;;
 		esac
 	done
-	while read -n1 char; do
+	while read -r -n1 char; do
 		[[ "${char}" =~ ^-?[0-9]*?\.?[0-9]*?$ ]] ||
 		[[ "${char}" =~ ^[\+]?[\-]?[\/]?[\*]?[\(]?[\)]?$ ]] ||
 		[[ "${char}" == " " ]] || return 3
@@ -812,7 +812,7 @@ EOF
 }
 #
 function malert(){ echo -n "$?"; }
-function ls_bash_opts(){ local item; while read -d: item; do echo "${item}"; done < <(echo -n "${BASHOPTS}"); }
+function ls_bash_opts(){ local item; while read -r -d: item; do echo "${item}"; done < <(echo -n "${BASHOPTS}"); }
 function parse_str(){
 	[[ $# -gt 0 ]] || return 1
 	local delim item array
@@ -822,7 +822,7 @@ function parse_str(){
 		esac
 	done
 	[[ -n "${delim}" ]] || delim=""
-	IFS="${delim}" read -ra array <<< "$*"
+	IFS="${delim}" read -r -a array <<< "$*"
 	for item in "${array[@]}"; do
 		echo "${item}"
 	done
@@ -1885,7 +1885,7 @@ function printff(){
 		eval printf "$@"
 	else
 		local string
-		while read string; do
+		while read -r string; do
 			echo -e "${string}"
 		done
 	fi
@@ -1936,7 +1936,7 @@ function mailinator(){
 #}
 function count_pipe_items(){
 	local count=0
-	while read input; do
+	while read -r input; do
 		count=$(($count + 1))
 	done
 	echo -e "Piped item count: \e[32m$count\e[0m"
@@ -2128,7 +2128,7 @@ function _get_pid_env(){
     fi
     local pid input
     if [[ ! -t 0 ]]; then
-        read -a input
+        read -r -a input
         pid=${input[0]}
     else
         pid=$1
@@ -2141,7 +2141,7 @@ function _get_pid_env(){
 function ty(){
     if [[ ! -t 0 ]]; then
         local input
-        read -a input
+        read -r -a input
         printf '%s\n' "${input[0]}"
     fi
 }
@@ -2422,7 +2422,7 @@ function lsq {
     local directory
     if [[ ! -t 0 ]]; then
         local _input
-        IFS='' read _input
+        IFS='' read -r _input
         if [[ ! -d "$_input" ]] &&
             [[ ! -f "$_input" ]]; then
             return 1
@@ -3061,7 +3061,7 @@ function float_range {
 function kill_else_oldest {
     local pids tmp arg_v max rev int
     if [[ ! -t 0 ]]; then
-        read -a arg_v
+        read -r -a arg_v
     else arg_v=( "$@" ); fi
     [[ ${#arg_v[@]} -eq 0 ]] && return 1
     tmp=( $(pgrep ${arg_v[0]}) )
@@ -3081,7 +3081,7 @@ function kill_else_oldest {
 function perms {
     local arg_v iter files perms
     if [[ ! -t 0 ]]; then
-        read -a arg_v
+        read -r -a arg_v
     else arg_v=( "$@" ); fi
     [[ ${#arg_v[@]} -eq 0 ]] && return 1
     for iter in "${arg_v[@]}"; do
