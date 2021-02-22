@@ -185,7 +185,7 @@ vimthemes(){ 	# list or preview vim themes; Usage: vimthemes [-p|--preview] [-u|
 		esac
 	done
 	oifs=$IFS;IFS=$(echo -en "\n\b")
-	[ -n "${modei+x}" ] || modei=echo
+	[ -n "${modei+x}" ] || modei="echo"
 	if [ ! -d "/home/$(id -un)/.vim/colors" -a "${userv+x}" ]; then
 		echo "Users Vim directory doesn't exist..."
 		return
@@ -477,7 +477,8 @@ function rgbtohex(){
 	[ $# -gt 0 ] &&
 	for int in "$@"; do
 		count=$((count + 1))
-		[ "${int}" -eq "${int}" -a "${int}" -le 255 ] 2>/dev/null || return
+        [[ "${int}" =~ ^[0-9]+$ ]] || return 2
+		[[ "${int}" -eq "${int}" ]] && [[ "${int}" -le 255 ]] 2>/dev/null || return 3
 		if [ $count -eq 1 ]; then
 			[ $int -ge 16 ] && R=$(printf '%x' ${int}) || R="0$(printf '%x' ${int})"
 		fi
@@ -487,7 +488,7 @@ function rgbtohex(){
 		if [ $count -eq 3 ]; then
 			[ $int -ge 16 ] && B=$(printf '%x' ${int}) || B="0$(printf '%x' ${int})"
 		fi
-	done || return
+	done || return 1
 	echo "${R}${G}${B}"
 }
 function vimandx(){
