@@ -853,12 +853,12 @@ function testtimed(){
 	local max param verb
 	for param in "$@"; do
 		case "${param}" in
-			[0-9]*) max=$(expr ${param} - 1) && shift;;
+			[0-9]*) max=$((param - 1)) && shift;;
 			-v) verb=true && shift;;
 		esac
 	done
 	test "${max}" -eq "${max}" > /dev/null 2>&1 ||
-	max=$(expr 100 - 1)
+	max=$((100 - 1))
 	for ((i=0;i<=${max};i++)); do
 		timed_array[$i]="$(timed)"
 		if [[ -n "${verb}" ]]; then
