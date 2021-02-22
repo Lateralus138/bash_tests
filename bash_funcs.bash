@@ -145,7 +145,7 @@ mountiso(){
 		return
 	fi
 	[ "$(mount | grep $mi)" ] &&
-	read -p " [ $mi is mounted, would you like to unmount: Y/N? ] " input &&
+	read -r -p " [ $mi is mounted, would you like to unmount: Y/N? ] " input &&
 	case "$input" in
 		Y|y) 	sudo umount $mi;[ "$(mount | grep $mi)" ] &&
 			echo " [ Could not unmount $mi ] " &&
@@ -1902,7 +1902,7 @@ function ps1pipe(){
 	if [[ -n $delim ]]; then
 		readarray from_pipe
 	else
-		read -a from_pipe
+		read -r -a from_pipe
 	fi
 	for item in "${from_pipe[@]}"; do
 		printf '%s' "${item}"
@@ -1919,7 +1919,7 @@ function ps1pipe2(){
 }
 function mailinator(){
 	local phrase
-	read phrase &&
+	read -r phrase &&
 	xdg-open 'https://'\
 'www.mailinator.com/v3/index.'\
 'jsp?zone=public&query='\
@@ -3033,7 +3033,7 @@ function rm_pipe {
             if  [[ -f "$input" ]] ||
                 [[ -d "$input" ]]; then
                 printf 'Would you like to delete: %s: (y/[N])?\n' "$input"
-                read -u 1 input_user
+                read -r -u 1 input_user
                 if [[ "$input_user" =~ ^([yY]|[yY][eE][sS])$ ]]; then
                     rm "$@" "$input"
                 fi
