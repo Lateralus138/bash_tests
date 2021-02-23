@@ -1592,15 +1592,14 @@ function ModKeys(){
                         if [[ $# -gt 0 ]]; then
                                 for arg in "${mods[@]}"; do
                                         xdotool keydown "${arg}"
-                                        sleep 0.25
+                                        sleep 0.25 || return 4
                                 done
                                 xdotool key "$*"
-                                sleep 0.25
+                                sleep 0.25 || return 4
                                 for arg in "${mods[@]}"; do
                                         xdotool keyup "${arg}"
-                                        sleep 0.25
+                                        sleep 0.25 || return 4
                                 done
-                                [[ $? -gt 0 ]] && return 4
                                 return
                         fi
                         return 3
@@ -1754,7 +1753,7 @@ function list_1f000(){
 	#printf "\n$count"
 	printf "\n"
 }
-function fcl(){ cat "$1" | wc -c; }
+function fcl(){ wc -c < "$1"; }
 function fortcproj(){
 	[[ $# -eq 0 ]] && return
     mkdir ${HOME}/fortran/projects/crossplatform/$1 &&
