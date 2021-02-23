@@ -4,7 +4,7 @@
 
 ## What, What
 
-Nothing to see here, various Bash tests for CodeFactor and otherwise. You'lll probably see a bunch of nonsense.
+Nothing to see here, various Bash tests for CodeFactor and otherwise. You'll probably see a bunch of nonsense.
 
 ## Current Bash Script Code-Factor Grade
 
