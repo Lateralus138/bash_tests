@@ -180,10 +180,8 @@ EOF
         printf '%s\n' "$value"
     fi
 }
-$(return >/dev/null 2>&1)
-
-if [ "$?" -eq "0" ]; then
-    complete -W "-h --help -o --oldest -f --file -d --directory -b --bare -of -od -ob -fb -db -ofb -odb" cronstat
+if $(return >/dev/null 2>&1); then
+    complete -W "-h --help -o --oldest -f --file -d --directory -b --bare -of -od -ob -fb -db -ofb -odb '\$(find -maxdepth 1)'" cronstat
 else
     cronstat "$@"
 fi
