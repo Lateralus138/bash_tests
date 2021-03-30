@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 function round_near {
   local arg="$1"
   if [[ "${arg:0:1}" =~ ^(-|\+)$ ]]; then
