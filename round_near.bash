@@ -20,6 +20,7 @@ function round_near {
     fi
   else return 1; fi
 }
+
 if ! $(return >/dev/null 2>&1); then
   round_near "$@"
 fi
