@@ -10,4 +10,6 @@ Nothing to see here, various Bash tests for CodeFactor and otherwise. You'll pro
 
 <sub>Only `.sh`, `.bash`, and possible regular `file`s (?) are parsed here as per [`.gitattributes`](./.gitattributes).</sub>
 
+![Current File](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Lateralus138/bash_tests/master/docs/json/file.json)
+
 ![Current Bash Script](https://img.shields.io/codefactor/grade/github/Lateralus138/bash_tests/master?style=for-the-badge&labelColor=1d1d1d&label=Current%20Bash%20Script)

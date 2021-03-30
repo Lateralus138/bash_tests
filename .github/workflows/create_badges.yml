@@ -1,0 +1,22 @@
+name: Create Badges
+on:
+  push:
+    paths:
+    - '**.bash'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create Badges
+      run: |
+        if ! [[ -d "docs/json" ]]; then
+          mkdir "docs/json" || exit 1
+        fi
+        file_text='{\n\t"schemaVersion": 1,\n\t"color": "b91d47",\n\t"label": "PLACEHOLDER",\n\t"message": "PLACEHOLDER",\n\t"labelColor": "1d1d1d",\n\t"style": "for-the-badge",\n\t"namedLogo": "linux"\n}'
+        echo -e "$file_text" > docs/json/file.json
+        sed -i "s/\"label\": \".*\"/\"label\": \"File\"/g" docs/json/file.json
+        sed -i "s/\"message\": \".*\"/\"message\": \"$(ls -l -rt | tail -1 | awk '{for(i=9;i<=NF;i++) printf $i" "; print ""}')\"/g" docs/json/file.json
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Pushed new file and created badges
