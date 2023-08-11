@@ -5,7 +5,7 @@ fi
 SEPERATOR="════════════════════════════════════════════════"
 TITLE=$(cat << EOF
  ╔$SEPERATOR╗
- ║ Hosts Compressor for Steven Black's hosts file ║
+ ║ Linux Hosts File Compressor                    ║
  ╚$SEPERATOR╝
 EOF
 )
