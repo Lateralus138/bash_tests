@@ -41,7 +41,7 @@ for ((index=0; index<${#URLSTEMPARRAY[@]}; index+=9))
 }
 echo -en "\x1b[J\x1b[4;1H\x1b[s  $SEPERATOR\n  ${#URLSTEMPARRAY[@]} urls compressed to ${#URLSARRAY[@]} lines.\n  $SEPERATOR\x1b[u"
 echo -e "\x1b[6;1H"
-if [[ -n "OUTPUT" ]]; then
+if [[ -n "$OUTPUT" ]]; then
 	printf '%s\n' "${HEADERARRAY[@]}" "${URLSARRAY[@]}" "${FOOTERARRAY[@]}" > "$OUTPUT"
 	echo -en "\x1b[J\x1b[7;1H\x1b[s  $SEPERATOR\n  The output file is located at:\n  $OUTPUT\n  $SEPERATOR\x1b[u"
 	echo -e "\x1b[10;1H"
