@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if [[ $# -gt 0 ]]; then
-	OUTPUT="$@"
+	OUTPUT="$*"
 fi
 SEPERATOR="════════════════════════════════════════════════"
 TITLE=$(cat << EOF
