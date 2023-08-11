@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"color": "b91d47",
 	"label": "File",
-	"message": "compress_steven_black_hosts.bash",
+	"message": "compress_hosts_linux.bash",
 	"labelColor": "1d1d1d",
 	"style": "for-the-badge",
 	"namedLogo": "linux"
